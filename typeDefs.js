@@ -5,19 +5,23 @@ const typeDefs = gql`
     id: ID!
     title : String
     description: String
-    test: String
+    
   }
 
   type Query{
     hello: String
     getAllTasks: [Task!]
+    getTask(id: ID!): Task!
   }
-  
+  input TaskInput {
+    title: String
+    description: String
+  }
+
   type Mutation{
-    createTask(
-      title: String!,
-      description: String!
-    ): Task!
+    createTask(task: TaskInput!): Task!
+    deleteTask(id:ID!): String!
+    updateTask(id:ID!, task: TaskInput!): Task!
   }
 
 `;
